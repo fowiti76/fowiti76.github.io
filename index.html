@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fidel Owiti | Speak to Lead — Public Speaking Coach, Nairobi</title>
+  <meta name="description" content="Fidel Owiti is a public speaking coach, author, and founder of Speak to Lead. Helping professionals and leaders communicate with clarity, confidence, and impact.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --burgundy:     #800000;
+      --burgundy-dk:  #5C0000;
+      --burgundy-lt:  #A0201E;
+      --orange:       #FF8C00;
+      --orange-lt:    #FFA733;
+      --blue:         #1B4F72;
+      --blue-lt:      #EBF5FB;
+      --cream:        #FDF6EC;
+      --dark:         #1A0A00;
+      --gray:         #6B4E3D;
+      --white:        #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(26,10,0,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,140,0,0.2);
+      padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 12px; text-decoration: none;
+    }
+    .nav-logo {
+      width: 36px; height: 36px;
+      background: var(--burgundy);
+      border: 1.5px solid var(--orange);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 16px; color: var(--white); font-weight: 700;
+    }
+    .nav-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; letter-spacing: 2.5px; color: var(--white);
+      font-weight: 500; text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 36px; list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.7); text-decoration: none;
+      font-size: 13px; letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta {
+      background: var(--orange); color: var(--dark) !important;
+      padding: 10px 22px; font-weight: 600 !important;
+      font-size: 13px !important; letter-spacing: 0.5px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--orange-lt) !important; color: var(--dark) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: flex; align-items: center;
+      padding: 120px 40px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(128,0,0,0.35) 0%, transparent 70%),
+                  radial-gradient(ellipse 40% 60% at 20% 80%, rgba(27,79,114,0.2) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image:
+        linear-gradient(var(--orange) 1px, transparent 1px),
+        linear-gradient(90deg, var(--orange) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 420px; gap: 80px;
+      align-items: center; position: relative; z-index: 1;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow span {
+      font-size: 11px; letter-spacing: 3px; color: var(--orange);
+      font-weight: 600; text-transform: uppercase;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 32px; height: 1px; background: var(--orange);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(44px, 5.5vw, 72px);
+      line-height: 1.08; font-weight: 900;
+      color: var(--white); margin-bottom: 28px;
+    }
+    .hero h1 em {
+      color: var(--orange); font-style: normal;
+    }
+    .hero-sub {
+      font-size: 18px; line-height: 1.7;
+      color: rgba(255,255,255,0.65);
+      max-width: 520px; margin-bottom: 44px;
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--orange); color: var(--dark);
+      padding: 16px 36px; font-weight: 600; font-size: 15px;
+      text-decoration: none; letter-spacing: 0.3px;
+      transition: all 0.2s; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--orange-lt); transform: translateY(-1px); }
+    .btn-ghost {
+      color: var(--white); border: 1px solid rgba(255,255,255,0.3);
+      padding: 16px 36px; font-size: 15px; text-decoration: none;
+      transition: all 0.2s; display: inline-block; letter-spacing: 0.3px;
+    }
+    .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* Hero card */
+    .hero-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,140,0,0.2);
+      padding: 44px 36px;
+    }
+    .hero-card-label {
+      font-size: 10px; letter-spacing: 3px; color: var(--orange);
+      font-weight: 600; text-transform: uppercase; margin-bottom: 32px;
+    }
+    .stat-row {
+      display: flex; flex-direction: column; gap: 28px;
+    }
+    .stat-item { border-left: 3px solid var(--burgundy); padding-left: 20px; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px; font-weight: 900; color: var(--white);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--orange); }
+    .stat-label {
+      font-size: 13px; color: rgba(255,255,255,0.5);
+      margin-top: 4px; letter-spacing: 0.3px;
+    }
+    .hero-card-divider {
+      height: 1px; background: rgba(255,140,0,0.15);
+      margin: 32px 0;
+    }
+    .hero-badge {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-badge-dot {
+      width: 8px; height: 8px;
+      background: var(--orange); border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+    .hero-badge-text {
+      font-size: 13px; color: rgba(255,255,255,0.6);
+    }
+
+    /* ── MARQUEE STRIP ── */
+    .strip {
+      background: var(--orange);
+      padding: 14px 0; overflow: hidden;
+    }
+    .strip-inner {
+      display: flex; gap: 60px;
+      animation: marquee 20s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .strip-item {
+      font-size: 12px; letter-spacing: 2px; font-weight: 600;
+      color: var(--dark); text-transform: uppercase; flex-shrink: 0;
+    }
+    .strip-dot { color: var(--burgundy); margin: 0 8px; }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 100px 40px;
+      background: var(--white);
+    }
+    .section-header {
+      max-width: 1100px; margin: 0 auto 60px;
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 40px;
+    }
+    .section-label {
+      font-size: 11px; letter-spacing: 3px; color: var(--orange);
+      font-weight: 600; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 900; color: var(--dark); line-height: 1.1;
+    }
+    .section-sub {
+      font-size: 16px; color: var(--gray);
+      max-width: 360px; line-height: 1.6; text-align: right;
+    }
+    .services-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;
+    }
+    .service-card {
+      padding: 48px 44px;
+      background: var(--cream);
+      border: 1px solid #e8d5c4;
+      transition: all 0.3s;
+      cursor: default;
+    }
+    .service-card:hover {
+      background: var(--burgundy);
+      border-color: var(--burgundy);
+    }
+    .service-card:hover .service-num,
+    .service-card:hover .service-title,
+    .service-card:hover .service-desc { color: var(--white); }
+    .service-card:hover .service-arrow { color: var(--orange); }
+    .service-card:hover .service-tag { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+    .service-num {
+      font-size: 11px; letter-spacing: 2px; color: var(--orange);
+      font-weight: 600; margin-bottom: 20px;
+      transition: color 0.3s;
+    }
+    .service-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px; font-weight: 700; color: var(--dark);
+      margin-bottom: 16px; line-height: 1.2;
+      transition: color 0.3s;
+    }
+    .service-desc {
+      font-size: 15px; color: var(--gray); line-height: 1.7;
+      margin-bottom: 28px; transition: color 0.3s;
+    }
+    .service-footer {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .service-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .service-tag {
+      font-size: 11px; letter-spacing: 1px; color: var(--gray);
+      background: rgba(128,0,0,0.06);
+      padding: 4px 10px; text-transform: uppercase; font-weight: 500;
+      transition: all 0.3s;
+    }
+    .service-arrow {
+      font-size: 20px; color: var(--burgundy); transition: color 0.3s;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 100px 40px;
+      background: var(--dark);
+    }
+    .about-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 100px;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-img-frame {
+      background: var(--burgundy);
+      aspect-ratio: 3/4; max-width: 380px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .about-img-frame::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(26,10,0,0.6));
+    }
+    .about-img-placeholder {
+      font-size: 80px; opacity: 0.3;
+    }
+    .about-accent {
+      position: absolute; bottom: -20px; right: -20px;
+      width: 140px; height: 140px;
+      background: var(--orange); opacity: 0.15;
+    }
+    .about-badge {
+      position: absolute; top: 28px; right: -28px;
+      background: var(--orange);
+      padding: 16px 20px; text-align: center;
+      min-width: 110px;
+    }
+    .about-badge-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px; font-weight: 900; color: var(--dark);
+      line-height: 1; display: block;
+    }
+    .about-badge-text {
+      font-size: 11px; color: var(--dark); font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      display: block; margin-top: 4px;
+    }
+    .about-content .section-label { color: var(--orange); }
+    .about-content .section-title { color: var(--white); }
+    .about-text {
+      font-size: 16px; color: rgba(255,255,255,0.65);
+      line-height: 1.8; margin-bottom: 20px;
+    }
+    .about-text strong { color: var(--white); }
+    .about-creds {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      margin-top: 44px;
+    }
+    .cred-item {
+      border-left: 3px solid var(--burgundy);
+      padding: 12px 16px; background: rgba(255,255,255,0.03);
+    }
+    .cred-title {
+      font-size: 14px; font-weight: 600; color: var(--white);
+      margin-bottom: 2px;
+    }
+    .cred-sub { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      padding: 100px 40px;
+      background: var(--cream);
+    }
+    .testimonials-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .testi-card {
+      background: var(--white);
+      border: 1px solid #e8d5c4;
+      padding: 36px 32px;
+      position: relative;
+    }
+    .testi-card::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 80px; color: var(--orange);
+      position: absolute; top: 16px; right: 28px;
+      line-height: 1; opacity: 0.4;
+    }
+    .testi-text {
+      font-size: 15px; line-height: 1.8; color: var(--dark);
+      margin-bottom: 28px; font-style: italic;
+    }
+    .testi-author {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .testi-avatar {
+      width: 44px; height: 44px;
+      background: var(--burgundy);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-weight: 700; font-size: 16px;
+      flex-shrink: 0;
+    }
+    .testi-name {
+      font-size: 14px; font-weight: 600; color: var(--dark);
+    }
+    .testi-role {
+      font-size: 12px; color: var(--gray); margin-top: 2px;
+    }
+    .testi-stars {
+      margin-bottom: 20px; color: var(--orange); font-size: 14px;
+      letter-spacing: 2px;
+    }
+
+    /* ── BOOKS ── */
+    .books {
+      padding: 100px 40px;
+      background: var(--white);
+    }
+    .books-grid {
+      max-width: 1100px; margin: 60px auto 0;
+      display: flex; gap: 16px; overflow-x: auto;
+      padding-bottom: 16px;
+    }
+    .book-card {
+      flex-shrink: 0; width: 200px;
+    }
+    .book-cover {
+      height: 280px; display: flex; align-items: center;
+      justify-content: center; font-family: 'Playfair Display', serif;
+      font-size: 24px; font-weight: 900; color: var(--white);
+      text-align: center; padding: 24px; line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .book-cover:nth-child(1) { background: var(--burgundy); }
+    .book-title {
+      font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 4px;
+    }
+    .book-sub { font-size: 12px; color: var(--gray); }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 100px 40px;
+      background: var(--burgundy);
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(255,140,0,0.15) 0%, transparent 70%);
+    }
+    .cta-inner {
+      max-width: 700px; margin: 0 auto; text-align: center;
+      position: relative; z-index: 1;
+    }
+    .cta-inner .section-label { color: var(--orange); margin-bottom: 20px; }
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 60px);
+      color: var(--white); font-weight: 900; margin-bottom: 20px;
+      line-height: 1.1;
+    }
+    .cta-sub {
+      font-size: 17px; color: rgba(255,255,255,0.7);
+      line-height: 1.7; margin-bottom: 44px;
+    }
+    .cta-actions {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      padding: 60px 40px 36px;
+      border-top: 1px solid rgba(255,140,0,0.15);
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 60px; margin-bottom: 48px;
+    }
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; color: var(--white); font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .footer-brand-sub {
+      font-size: 13px; color: rgba(255,255,255,0.4);
+      line-height: 1.7; margin-bottom: 24px;
+    }
+    .footer-social {
+      display: flex; gap: 12px;
+    }
+    .social-link {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,140,0,0.3);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.5); font-size: 14px; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .social-link:hover { border-color: var(--orange); color: var(--orange); }
+    .footer-col-title {
+      font-size: 11px; letter-spacing: 2px; color: var(--orange);
+      font-weight: 600; text-transform: uppercase; margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 14px; color: rgba(255,255,255,0.5);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--orange); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 28px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy {
+      font-size: 13px; color: rgba(255,255,255,0.3);
+    }
+    .footer-palette {
+      display: flex; gap: 6px;
+    }
+    .palette-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float {
+      position: fixed; bottom: 32px; right: 32px; z-index: 200;
+      background: #25D366; color: var(--white);
+      width: 56px; height: 56px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: transform 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.1); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.7s, transform 0.7s;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 20px 60px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-card { display: none; }
+      .services { padding: 60px 20px; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+      .section-sub { text-align: left; }
+      .services-grid { grid-template-columns: 1fr; }
+      .about { padding: 60px 20px; }
+      .about-inner { grid-template-columns: 1fr; gap: 48px; }
+      .about-badge { display: none; }
+      .testimonials { padding: 60px 20px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .books { padding: 60px 20px; }
+      .cta-section { padding: 60px 20px; }
+      footer { padding: 40px 20px 24px; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-brand">
+      <div class="nav-logo">F</div>
+      <span class="nav-name">Speak to Lead</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#books">Books</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="coaching-program.html" class="nav-cta">Work With Me</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span>Nairobi, Kenya · Est. 2019</span>
+        </div>
+        <h1>
+          Find Your Voice.<br>
+          <em>Lead the Room.</em><br>
+          Change the World.
+        </h1>
+        <p class="hero-sub">
+          Public speaking coach, author, and founder of Speak to Lead.
+          Helping professionals and leaders across East Africa communicate
+          with clarity, confidence, and lasting impact.
+        </p>
+        <div class="hero-actions">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform"
+             class="btn-primary" target="_blank">
+            Start Coaching →
+          </a>
+          <a href="#about" class="btn-ghost">About Fidel</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-label">By the Numbers</div>
+        <div class="stat-row">
+          <div class="stat-item">
+            <div class="stat-num">500<span>+</span></div>
+            <div class="stat-label">Communicators Trained</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">26</div>
+            <div class="stat-label">Books Written in One Year</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">10<span>+</span></div>
+            <div class="stat-label">Years on Stage</div>
+          </div>
+        </div>
+        <div class="hero-card-divider"></div>
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          <span class="hero-badge-text">Currently accepting new clients</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <div class="strip-inner">
+      <span class="strip-item">Public Speaking Coaching <span class="strip-dot">◆</span></span>
+      <span class="strip-item">Executive Communication <span class="strip-dot">◆</span></span>
+      <span class="strip-item">Keynote Speaking <span class="strip-dot">◆</span></span>
+      <span class="strip-item">Corporate Training <span class="strip-dot">◆</span></span>
+      <span class="strip-item">IGNITE Leadership Programme <span class="strip-dot">◆</span></span>
+      <span class="strip-item">Author · 26 Books <span class="strip-dot">◆</span></span>
+      <span class="strip-item">Founder, KAPS <span class="strip-dot">◆</span></span>
+      <span class="strip-item">Public Speaking Coaching <span class="strip-dot">◆</span></span>
+      <span class="strip-item">Executive Communication <span class="strip-dot">◆</span></span>
+      <span class="strip-item">Keynote Speaking <span class="strip-dot">◆</span></span>
+      <span class="strip-item">Corporate Training <span class="strip-dot">◆</span></span>
+      <span class="strip-item">IGNITE Leadership Programme <span class="strip-dot">◆</span></span>
+      <span class="strip-item">Author · 26 Books <span class="strip-dot">◆</span></span>
+      <span class="strip-item">Founder, KAPS <span class="strip-dot">◆</span></span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-header fade-up">
+      <div>
+        <div class="section-label">What I Do</div>
+        <h2 class="section-title">Communication<br>is Leadership.</h2>
+      </div>
+      <p class="section-sub">
+        Every service is built around one belief: your voice is your
+        most powerful leadership tool. Let's develop it.
+      </p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-num">01</div>
+        <h3 class="service-title">One-on-One Public Speaking Coaching</h3>
+        <p class="service-desc">
+          Personalized coaching to help you speak with confidence, structure
+          your ideas with clarity, and command any room you walk into.
+        </p>
+        <div class="service-footer">
+          <div class="service-tags">
+            <span class="service-tag">Confidence</span>
+            <span class="service-tag">Delivery</span>
+          </div>
+          <span class="service-arrow">→</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-num">02</div>
+        <h3 class="service-title">Executive Communication Coaching</h3>
+        <p class="service-desc">
+          For leaders who need to influence, persuade, and inspire. Build
+          executive presence, master high-stakes communication, and lead
+          with your voice.
+        </p>
+        <div class="service-footer">
+          <div class="service-tags">
+            <span class="service-tag">Leadership</span>
+            <span class="service-tag">Presence</span>
+          </div>
+          <span class="service-arrow">→</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-num">03</div>
+        <h3 class="service-title">Corporate & Team Training</h3>
+        <p class="service-desc">
+          High-impact communication workshops for teams and organisations
+          across Kenya and East Africa. Build a culture of clarity and
+          confident expression.
+        </p>
+        <div class="service-footer">
+          <div class="service-tags">
+            <span class="service-tag">Teams</span>
+            <span class="service-tag">Workshops</span>
+          </div>
+          <span class="service-arrow">→</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-num">04</div>
+        <h3 class="service-title">IGNITE Leadership Programme</h3>
+        <p class="service-desc">
+          A complete leadership development experience for young professionals
+          and emerging leaders who are done waiting for permission to lead.
+        </p>
+        <div class="service-footer">
+          <div class="service-tags">
+            <span class="service-tag">Youth</span>
+            <span class="service-tag">Leadership</span>
+          </div>
+          <span class="service-arrow">→</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <div class="about-visual fade-up">
+        <div class="about-img-frame">
+          <div class="about-img-placeholder">🎤</div>
+        </div>
+        <div class="about-accent"></div>
+        <div class="about-badge">
+          <span class="about-badge-num">26</span>
+          <span class="about-badge-text">Books Written</span>
+        </div>
+      </div>
+      <div class="about-content fade-up">
+        <div class="section-label">About Fidel</div>
+        <h2 class="section-title">I Started Speaking<br>at Fourteen.</h2>
+        <p class="about-text" style="margin-top:24px;">
+          I'm Fidel Owiti — public speaker, coach, author, and founder of
+          <strong>Speak to Lead</strong>. I built this from a single coaching
+          session with no office, no staff, and no capital into a training
+          organisation that has developed hundreds of communicators across
+          Kenya and East Africa.
+        </p>
+        <p class="about-text">
+          At 26, I wrote <strong>26 books in one year</strong>. I founded the
+          <strong>Kenya Association of Public Speakers (KAPS)</strong>. I coach
+          executives, students, and professionals who have something important
+          to say and need the tools to say it powerfully.
+        </p>
+        <p class="about-text">
+          My belief is simple: <strong>communication is leadership</strong>.
+          The moment you learn to speak with clarity and confidence, everything
+          changes — your influence, your impact, and your income.
+        </p>
+        <div class="about-creds">
+          <div class="cred-item">
+            <div class="cred-title">Founder, Speak to Lead</div>
+            <div class="cred-sub">Coaching Organisation</div>
+          </div>
+          <div class="cred-item">
+            <div class="cred-title">Founder, KAPS</div>
+            <div class="cred-sub">Kenya Association of Public Speakers</div>
+          </div>
+          <div class="cred-item">
+            <div class="cred-title">Author</div>
+            <div class="cred-sub">26 Books, Speak to Lead Series</div>
+          </div>
+          <div class="cred-item">
+            <div class="cred-title">Speaker</div>
+            <div class="cred-sub">Universities, Corporates, Summits</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-header fade-up" style="max-width:1100px; margin:0 auto 60px;">
+      <div>
+        <div class="section-label">Client Results</div>
+        <h2 class="section-title">What Clients Say.</h2>
+      </div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card fade-up">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Fidel's coaching transformed how I show up in boardrooms.
+          I went from dreading presentations to leading them. The clarity
+          he brings to communication is extraordinary."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div>
+            <div class="testi-name">Amina K.</div>
+            <div class="testi-role">Senior Manager, Nairobi</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "I attended the IGNITE programme as a university student with no
+          confidence. Six months later I was speaking at a national youth
+          summit. Fidel sees potential before you do."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">D</div>
+          <div>
+            <div class="testi-name">David M.</div>
+            <div class="testi-role">University Student, Mombasa</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Our entire sales team went through the Speak to Lead workshop.
+          The difference in client meetings was immediate. Fidel doesn't
+          just teach speaking — he teaches thinking."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <div class="testi-name">Sarah W.</div>
+            <div class="testi-role">CEO, Tech Startup, Nairobi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKS -->
+  <section class="books" id="books">
+    <div class="section-header fade-up" style="max-width:1100px; margin:0 auto 0;">
+      <div>
+        <div class="section-label">Published Works</div>
+        <h2 class="section-title">The Speak to Lead Series.</h2>
+      </div>
+      <p class="section-sub">26 books written in one year. Each one a tool for your growth.</p>
+    </div>
+    <div class="books-grid">
+      <div class="book-card">
+        <div class="book-cover" style="background:#800000;">IGNITE</div>
+        <div class="book-title">IGNITE</div>
+        <div class="book-sub">Youth Leadership</div>
+      </div>
+      <div class="book-card">
+        <div class="book-cover" style="background:#1B4F72;">ALMOST</div>
+        <div class="book-title">ALMOST</div>
+        <div class="book-sub">Stop Waiting, Start</div>
+      </div>
+      <div class="book-card">
+        <div class="book-cover" style="background:#5C0000;">A Life That Matters</div>
+        <div class="book-title">A Life That Matters</div>
+        <div class="book-sub">Purpose & Fulfillment</div>
+      </div>
+      <div class="book-card">
+        <div class="book-cover" style="background:#FF8C00; color:#1A0A00;">Quiet Influence</div>
+        <div class="book-title">Quiet Influence</div>
+        <div class="book-sub">Introverted Leadership</div>
+      </div>
+      <div class="book-card">
+        <div class="book-cover" style="background:#2C3E50;">SPARK</div>
+        <div class="book-title">SPARK</div>
+        <div class="book-sub">Find Your Fire</div>
+      </div>
+      <div class="book-card">
+        <div class="book-cover" style="background:#800000; opacity:0.7;">+21 More</div>
+        <div class="book-title">And 21 More...</div>
+        <div class="book-sub">Speak to Lead Series</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner fade-up">
+      <div class="section-label">Ready to Begin?</div>
+      <h2 class="cta-title">Your Voice is Your Most Powerful Asset.</h2>
+      <p class="cta-sub">
+        Stop waiting for the right moment to start speaking up.
+        The room is ready for you. Let's make sure you're ready for the room.
+      </p>
+      <div class="cta-actions">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform"
+           class="btn-primary" target="_blank">
+          Apply for Coaching →
+        </a>
+        <a href="https://calendly.com/fowiti76" class="btn-ghost" target="_blank">
+          Book a Call
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">Speak to Lead</div>
+          <p class="footer-brand-sub">
+            Helping professionals and leaders across Kenya and East Africa
+            communicate with clarity, confidence, and impact.
+            Founded by Fidel Owiti, Nairobi.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-link">in</a>
+            <a href="#" class="social-link">ig</a>
+            <a href="#" class="social-link">tw</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="#">One-on-One Coaching</a></li>
+            <li><a href="#">Executive Communication</a></li>
+            <li><a href="#">Corporate Training</a></li>
+            <li><a href="#">IGNITE Programme</a></li>
+            <li><a href="#">Keynote Speaking</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-links">
+            <li><a href="mailto:fowiti76@gmail.com">fowiti76@gmail.com</a></li>
+            <li><a href="https://calendly.com/fowiti76">Book a Call</a></li>
+            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform">Client Intake Form</a></li>
+            <li><a href="#">www.fidelowitispeaks.com</a></li>
+            <li><a href="#">Nairobi, Kenya</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2025 Speak to Lead · Fidel Owiti · All rights reserved.</span>
+        <div class="footer-palette">
+          <div class="palette-dot" style="background:#800000;" title="Burgundy"></div>
+          <div class="palette-dot" style="background:#FF8C00;" title="Orange"></div>
+          <div class="palette-dot" style="background:#1B4F72;" title="Blue"></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/254XXXXXXXXX" class="wa-float" target="_blank" title="Chat on WhatsApp">
+    💬
+  </a>
+
+  <script>
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Stagger service cards
+    document.querySelectorAll('.service-card').forEach((card, i) => {
+      card.style.transitionDelay = (i * 0.1) + 's';
+    });
+  </script>
+</body>
+</html>
