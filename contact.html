@@ -18,7 +18,7 @@
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(14,22,40,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.2); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
     .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
     .nav-logo-img { height: 46px; width: 46px; border-radius: 50%; object-fit: cover; border: 1.5px solid rgba(201,168,76,0.5); }
-    .nav-name { font-size: 13px; letter-spacing: 2.5px; color: var(--white); font-weight: 500; text-transform: uppercase; }
+    .nav-name { font-size: 13px; letter-spacing: 0; color: var(--white); font-weight: 500; }
     .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
     .nav-links a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 13px; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--gold); }
@@ -81,21 +81,16 @@
       section{padding-left:20px!important;padding-right:20px!important;}
       .contact-grid{grid-template-columns:1fr!important;gap:40px!important;}
       .faq-section{padding-left:20px!important;padding-right:20px!important;}
+      section{padding-left:20px!important;padding-right:20px!important;}
     }
   
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-left { opacity: 0; transform: translateX(-28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right { opacity: 0; transform: translateX(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal-right.visible { opacity: 1; transform: translateX(0); }
-    .reveal-scale { opacity: 0; transform: scale(0.94); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal-scale.visible { opacity: 1; transform: scale(1); }
-    .delay-1 { transition-delay: 0.1s; }
-    .delay-2 { transition-delay: 0.2s; }
-    .delay-3 { transition-delay: 0.3s; }
-    .delay-4 { transition-delay: 0.4s; }
-    .delay-5 { transition-delay: 0.5s; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    
+    
+    .reveal-left { opacity: 1; transform: none; transition: none; }
+    .reveal-right { opacity: 1; transform: none; transition: none; }
+    .reveal-scale { opacity: 1; transform: none; transition: none; }
+
   
     .faq-section { padding: 72px 48px; background: var(--cream); }
     .faq-inner { max-width: 720px; margin: 0 auto; }
@@ -107,13 +102,33 @@
     .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; }
     .faq-item.open .faq-a { max-height: 300px; }
     .faq-a p { font-size: 15px; color: var(--gray); line-height: 1.8; padding-bottom: 20px; }
+      /* NOSCRIPT / JS-FAIL FALLBACK: show all reveal elements */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
+    
+      /* GLOBAL MOBILE PADDING - prevents all blank section issues */
+      section { padding-left: 20px !important; padding-right: 20px !important; }
+      /* Grid fixes */
+      .impact-grid { grid-template-columns: repeat(2,1fr) !important; }
+      .about-creds { grid-template-columns: 1fr !important; }
+      .testimonials-grid { grid-template-columns: 1fr !important; }
+      .services-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+      .books-grid { gap: 12px !important; }
+      .why-grid, .past-grid, .topics-grid, .events-grid, .res-grid, .art-grid { grid-template-columns: 1fr !important; }
+      .featured { grid-template-columns: 1fr !important; }
+      .reel-inner { grid-template-columns: 1fr !important; }
+      .press-grid { grid-template-columns: repeat(2,1fr) !important; }
+      .footer-top { grid-template-columns: 1fr !important; gap: 28px !important; }
+      .contact-grid { grid-template-columns: 1fr !important; }
+    }
   </style>
 </head>
 <body>
+  <div id="progressBar" style="position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--burgundy));z-index:9999;width:0%;transition:width 0.1s;pointer-events:none;"></div>
   <nav>
     <a href="index.html" class="nav-brand">
       <img src="logo.jpg" alt="Speak to Lead" class="nav-logo-img">
-      <span class="nav-name">Speak to <span style="color:var(--gold);">Lead</span></span>
+      <span class="nav-name"><span style="color:#FFFFFF;letter-spacing:3px;font-weight:700;">SPEAK</span>&nbsp;<span style="color:#C9A84C;letter-spacing:1px;font-weight:400;font-size:11px;text-transform:lowercase;">to</span>&nbsp;<span style="color:#FFFFFF;letter-spacing:3px;font-weight:700;">LEAD</span></span>
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -122,7 +137,7 @@
       <li><a href="speaking.html">Speaking</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="contact.html" class="active">Contact</a></li>
-      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank" class="nav-cta">Work With Me</a></li>
+      <li><a href="https://speaktolead-onboarding.netlify.app" target="_blank" class="nav-cta">Work With Me</a></li>
     </ul>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </nav>
@@ -133,7 +148,7 @@
     <a href="speaking.html">Book Me to Speak</a>
     <a href="blog.html">Blog</a>
     <a href="contact.html" class="active">Contact</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank" class="mobile-cta">Work With Me</a>
+    <a href="https://speaktolead-onboarding.netlify.app" target="_blank" class="mobile-cta">Work With Me</a>
   </div>
   <section style="background:var(--navy-dk);padding:140px 48px 80px;position:relative;overflow:hidden;text-align:center;">
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(128,0,0,0.2) 0%,transparent 70%);"></div>
@@ -155,9 +170,9 @@
         <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,40px);font-weight:900;color:var(--dark);line-height:1.1;margin-bottom:28px;">Reach Fidel Directly.</h2>
         <p style="font-size:16px;color:var(--gray);line-height:1.8;margin-bottom:36px;">Based in Nairobi, Kenya. Available for coaching, speaking, and training across East Africa and beyond.</p>
         <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:36px;">
-          <a href="/cdn-cgi/l/email-protection#9ef8f1e9f7eaf7a9a8def9f3fff7f2b0fdf1f3" style="display:flex;align-items:center;gap:16px;padding:18px;border:1px solid #e8dfc8;text-decoration:none;transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='#e8dfc8'">
+          <a href="/cdn-cgi/l/email-protection#45363520242e312a292024217c7c052228242c296b262a28" style="display:flex;align-items:center;gap:16px;padding:18px;border:1px solid #e8dfc8;text-decoration:none;transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='#e8dfc8'">
             <div style="width:44px;height:44px;background:var(--burgundy);display:flex;align-items:center;justify-content:center;color:white;font-size:18px;flex-shrink:0;"><i class="fas fa-envelope"></i></div>
-            <div><div style="font-size:10px;letter-spacing:2px;color:var(--gold);font-weight:600;text-transform:uppercase;margin-bottom:2px;">Email</div><div style="font-size:15px;font-weight:600;color:var(--dark);"><span class="__cf_email__" data-cfemail="11777e66786578262751767c70787d3f727e7c">[email&#160;protected]</span></div></div>
+            <div><div style="font-size:10px;letter-spacing:2px;color:var(--gold);font-weight:600;text-transform:uppercase;margin-bottom:2px;">Email</div><div style="font-size:15px;font-weight:600;color:var(--dark);"><span class="__cf_email__" data-cfemail="11777e66786578262751767c70787d3f727e7c"><span class="__cf_email__" data-cfemail="b1c2c1d4d0dac5deddd4d0d58888f1d6dcd0d8dd9fd2dedc">[email&#160;protected]</span></span></div></div>
           </a>
           <a href="https://wa.me/254113660881" target="_blank" style="display:flex;align-items:center;gap:16px;padding:18px;border:1px solid #e8dfc8;text-decoration:none;transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='#e8dfc8'">
             <div style="width:44px;height:44px;background:#25D366;display:flex;align-items:center;justify-content:center;color:white;font-size:18px;flex-shrink:0;"><i class="fab fa-whatsapp"></i></div>
@@ -185,7 +200,7 @@
         <p style="font-size:11px;letter-spacing:3px;color:var(--gold);font-weight:600;text-transform:uppercase;margin-bottom:12px;">What Are You Looking For?</p>
         <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,40px);font-weight:900;color:var(--dark);line-height:1.1;margin-bottom:28px;">Choose Your Next Step.</h2>
         <div style="display:flex;flex-direction:column;gap:16px;">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank" style="border:1px solid #e8dfc8;padding:28px;text-decoration:none;display:block;transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='#e8dfc8'">
+          <a href="https://speaktolead-onboarding.netlify.app" target="_blank" style="border:1px solid #e8dfc8;padding:28px;text-decoration:none;display:block;transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='#e8dfc8'">
             <div style="font-size:32px;margin-bottom:12px;">🎯</div>
             <div style="font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--dark);margin-bottom:8px;">I Want Coaching</div>
             <p style="font-size:14px;color:var(--gray);line-height:1.6;margin-bottom:12px;">Fill in the client intake form and Fidel will personally review your details and reach out within 48 hours.</p>
@@ -248,7 +263,7 @@
       <p style="font-size:11px;letter-spacing:3px;color:var(--gold);font-weight:600;text-transform:uppercase;margin-bottom:16px;">Ready?</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,52px);color:var(--white);font-weight:900;margin-bottom:16px;line-height:1.1;">Your Voice Deserves to Be Heard.</h2>
       <p style="font-size:16px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:36px;">Take the first step today. Fill in the intake form and let's begin building the communicator you were meant to be.</p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank" style="background:var(--gold);color:var(--dark);padding:16px 40px;font-weight:700;font-size:15px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;"><i class="fas fa-arrow-right"></i> Apply for Coaching</a>
+      <a href="https://speaktolead-onboarding.netlify.app" target="_blank" style="background:var(--gold);color:var(--dark);padding:16px 40px;font-weight:700;font-size:15px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;"><i class="fas fa-arrow-right"></i> Apply for Coaching</a>
     </div>
   </section>
   <footer>
@@ -279,10 +294,10 @@
         <div>
           <div class="footer-col-title">Contact</div>
           <ul class="footer-links">
-            <li><a href="/cdn-cgi/l/email-protection#1a7c756d736e732d2c5a7d777b737634797577"><span class="__cf_email__" data-cfemail="2e484159475a4719186e49434f4742004d4143">[email&#160;protected]</span></a></li>
+            <li><a href="/cdn-cgi/l/email-protection#3d4e4d585c56495251585c5904047d5a505c5451135e5250"><span class="__cf_email__" data-cfemail="0f7c7f6a6e647b60636a6e6b36364f68626e6663216c6062">[email&#160;protected]</span></a></li>
             <li><a href="https://wa.me/254113660881" target="_blank">+254 113 660 881</a></li>
             <li><a href="https://calendly.com/fowiti76" target="_blank">Book a Call</a></li>
-            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank">Client Intake Form</a></li>
+            <li><a href="https://speaktolead-onboarding.netlify.app" target="_blank">Client Intake Form</a></li>
           </ul>
         </div>
       </div>
@@ -306,7 +321,7 @@
       <i class="fab fa-whatsapp"></i>
       <span class="fab-tip">WhatsApp</span>
     </a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" class="fab fab-form" target="_blank" title="Client Intake Form">
+    <a href="https://speaktolead-onboarding.netlify.app" class="fab fab-form" target="_blank" title="Client Intake Form">
       <i class="fas fa-file-alt"></i>
       <span class="fab-tip">Apply Now</span>
     </a>
@@ -318,14 +333,7 @@
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-      if (!els.length) return;
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-      }, { threshold: 0.1 });
-      els.forEach(el => obs.observe(el));
-    });
+
     window.addEventListener('scroll', () => {
       const st = document.documentElement.scrollTop;
       const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -346,12 +354,4 @@
     }
     document.querySelectorAll(".mobile-menu a").forEach(link => {
       link.addEventListener("click", () => {
-        document.getElementById("mobileMenu").classList.remove("open");
-        document.getElementById("hamburger").classList.remove("open");
-      });
-    });
-    // Scroll progress + back to top (if elements exist)
-    window.addEventListener('scroll', () => {
-      const st = document.documentElement.scrollTop;
-      const bar = document.getElementById('progressBar');
-      const btn = document.getElementBy
+        document.get

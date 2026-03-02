@@ -27,7 +27,7 @@
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(14,22,40,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.2); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
     .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
     .nav-logo-img { height: 46px; width: 46px; border-radius: 50%; object-fit: cover; border: 1.5px solid rgba(201,168,76,0.5); }
-    .nav-name { font-size: 13px; letter-spacing: 2.5px; color: var(--white); font-weight: 500; text-transform: uppercase; }
+    .nav-name { font-size: 13px; letter-spacing: 0; color: var(--white); font-weight: 500; }
     .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
     .nav-links a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 13px; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--gold); }
@@ -79,20 +79,16 @@
 
 
     /* SCROLL ANIMATIONS */
-    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-left { opacity: 0; transform: translateX(-32px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right { opacity: 0; transform: translateX(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal-right.visible { opacity: 1; transform: translateX(0); }
-    .reveal-scale { opacity: 0; transform: scale(0.95); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+    .reveal { opacity: 1; transform: none; }
+    
+    .reveal-left { opacity: 1; transform: none; }
+    
+    .reveal-right { opacity: 1; transform: none; }
+    
+    .reveal-scale { opacity: 1; transform: none; }
+    
     /* Stagger delays */
-    .delay-1 { transition-delay: 0.1s; }
-    .delay-2 { transition-delay: 0.2s; }
-    .delay-3 { transition-delay: 0.3s; }
-    .delay-4 { transition-delay: 0.4s; }
-    .delay-5 { transition-delay: 0.5s; }
+
     /* MEDIA / PRESS */
     .press-section { padding: 72px 48px; background: var(--white); border-bottom: 1px solid #e8dfc8; }
     .press-inner { max-width: 1100px; margin: 0 auto; }
@@ -269,6 +265,25 @@
       .impact-item { padding:24px 16px; }
       .books-grid { gap:12px; }
     }
+      /* NOSCRIPT / JS-FAIL FALLBACK: show all reveal elements */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
+    
+      /* GLOBAL MOBILE PADDING - prevents all blank section issues */
+      section { padding-left: 20px !important; padding-right: 20px !important; }
+      /* Grid fixes */
+      .impact-grid { grid-template-columns: repeat(2,1fr) !important; }
+      .about-creds { grid-template-columns: 1fr !important; }
+      .testimonials-grid { grid-template-columns: 1fr !important; }
+      .services-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+      .books-grid { gap: 12px !important; }
+      .why-grid, .past-grid, .topics-grid, .events-grid, .res-grid, .art-grid { grid-template-columns: 1fr !important; }
+      .featured { grid-template-columns: 1fr !important; }
+      .reel-inner { grid-template-columns: 1fr !important; }
+      .press-grid { grid-template-columns: repeat(2,1fr) !important; }
+      .footer-top { grid-template-columns: 1fr !important; gap: 28px !important; }
+      .contact-grid { grid-template-columns: 1fr !important; }
+    }
   </style>
 </head>
 <body>
@@ -284,15 +299,14 @@
       <div style="font-size:10px;letter-spacing:3px;color:var(--gold);font-weight:600;text-transform:uppercase;margin-bottom:12px;">Free Newsletter</div>
       <h3 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--white);line-height:1.2;margin-bottom:12px;">Get Weekly Speaking Tips<br>From Fidel.</h3>
       <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:28px;">Join readers across East Africa getting practical communication and leadership insights every week. Free on Substack.</p>
-      <a href="https://substack.com/@fidelowiti" target="_blank" onclick="closePopup()" style="background:var(--gold);color:var(--dark);padding:14px 36px;font-weight:700;font-size:15px;text-decoration:none;display:block;margin-bottom:12px;">Subscribe Free on Substack</a>
+      <a href="https://open.substack.com/pub/speaktolead?utm_source=share&utm_medium=android&r=4otzz" target="_blank" onclick="closePopup()" style="background:var(--gold);color:var(--dark);padding:14px 36px;font-weight:700;font-size:15px;text-decoration:none;display:block;margin-bottom:12px;">Subscribe Free on Substack</a>
       <button onclick="closePopup()" style="background:none;border:none;color:rgba(255,255,255,0.3);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">No thanks, I'll miss out</button>
     </div>
   </div>
-  <button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:100px;right:32px;z-index:200;width:44px;height:44px;background:var(--navy);color:var(--white);border:1px solid rgba(201,168,76,0.4);border-radius:50%;font-size:18px;cursor:pointer;opacity:0;transition:opacity 0.3s;display:flex;align-items:center;justify-content:center;">↑</button>
   <nav>
     <a href="index.html" class="nav-brand">
       <img src="logo.jpg" alt="Speak to Lead" class="nav-logo-img">
-      <span class="nav-name">Speak to <span style="color:var(--gold);">Lead</span></span>
+      <span class="nav-name"><span style="color:#FFFFFF;letter-spacing:3px;font-weight:700;">SPEAK</span>&nbsp;<span style="color:#C9A84C;letter-spacing:1px;font-weight:400;font-size:11px;text-transform:lowercase;">to</span>&nbsp;<span style="color:#FFFFFF;letter-spacing:3px;font-weight:700;">LEAD</span></span>
     </a>
     <ul class="nav-links">
       <li><a href="index.html" class="active">Home</a></li>
@@ -301,7 +315,7 @@
       <li><a href="speaking.html">Speaking</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank" class="nav-cta">Work With Me</a></li>
+      <li><a href="https://speaktolead-onboarding.netlify.app" target="_blank" class="nav-cta">Work With Me</a></li>
     </ul>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </nav>
@@ -312,7 +326,7 @@
     <a href="speaking.html">Book Me to Speak</a>
     <a href="blog.html">Blog</a>
     <a href="contact.html">Contact</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank" class="mobile-cta">Work With Me</a>
+    <a href="https://speaktolead-onboarding.netlify.app" target="_blank" class="mobile-cta">Work With Me</a>
   </div>
 <!-- HERO -->
   <section class="hero">
@@ -329,7 +343,7 @@
         <h1>Find Your Voice.<br><em>Lead the Room.</em><br>Change the World.</h1>
         <p class="hero-sub">Public speaking coach, author, and founder of Speak to Lead. Helping professionals and leaders across East Africa communicate with clarity, confidence, and lasting impact.</p>
         <div class="hero-actions">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" class="btn-primary" target="_blank">Start Coaching →</a>
+          <a href="https://speaktolead-onboarding.netlify.app" class="btn-primary" target="_blank">Start Coaching →</a>
           <a href="#about" class="btn-ghost">About Fidel</a>
         </div>
       </div>
@@ -796,7 +810,7 @@
       <h2 class="cta-title">Your Voice is Your Most Powerful Asset.</h2>
       <p class="cta-sub">Stop waiting for the right moment to start speaking up. The room is ready for you. Let's make sure you're ready for the room.</p>
       <div class="cta-actions">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" class="btn-primary" target="_blank">Apply for Coaching →</a>
+        <a href="https://speaktolead-onboarding.netlify.app" class="btn-primary" target="_blank">Apply for Coaching →</a>
         <a href="https://calendly.com/fowiti76" class="btn-ghost" target="_blank">Book a Call</a>
       </div>
     </div>
@@ -831,10 +845,10 @@
         <div>
           <div class="footer-col-title">Contact</div>
           <ul class="footer-links">
-            <li><a href="/cdn-cgi/l/email-protection#ed8b829a849984dadbad8a808c8481c38e8280"><span class="__cf_email__" data-cfemail="a1c7ced6c8d5c89697e1c6ccc0c8cd8fc2cecc">[email&#160;protected]</span></a></li>
+            <li><a href="/cdn-cgi/l/email-protection#2e5d5e4b4f455a41424b4f4a17176e49434f4742004d4143"><span class="__cf_email__" data-cfemail="06757663676d72696a6367623f3f46616b676f6a2865696b">[email&#160;protected]</span></a></li>
             <li><a href="https://wa.me/254113660881" target="_blank">+254 113 660 881</a></li>
             <li><a href="https://calendly.com/fowiti76" target="_blank">Book a Call</a></li>
-            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank">Client Intake Form</a></li>
+            <li><a href="https://speaktolead-onboarding.netlify.app" target="_blank">Client Intake Form</a></li>
           </ul>
         </div>
       </div>
@@ -860,7 +874,7 @@
       <div style="font-size:10px;letter-spacing:3px;color:var(--gold);font-weight:600;text-transform:uppercase;margin-bottom:12px;">Free Newsletter</div>
       <h3 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--white);line-height:1.2;margin-bottom:12px;">Get Weekly Speaking Tips<br>From Fidel.</h3>
       <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:28px;">Join readers across East Africa getting practical communication and leadership insights every week. Free on Substack.</p>
-      <a href="https://substack.com/@fidelowiti" target="_blank" onclick="closePopup()" style="background:var(--gold);color:var(--dark);padding:14px 36px;font-weight:700;font-size:15px;text-decoration:none;display:block;margin-bottom:12px;">Subscribe Free on Substack</a>
+      <a href="https://open.substack.com/pub/speaktolead?utm_source=share&utm_medium=android&r=4otzz" target="_blank" onclick="closePopup()" style="background:var(--gold);color:var(--dark);padding:14px 36px;font-weight:700;font-size:15px;text-decoration:none;display:block;margin-bottom:12px;">Subscribe Free on Substack</a>
       <button onclick="closePopup()" style="background:none;border:none;color:rgba(255,255,255,0.3);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">No thanks, I'll miss out</button>
     </div>
   </div>
@@ -871,7 +885,7 @@
       <i class="fab fa-whatsapp"></i>
       <span class="fab-tip">WhatsApp</span>
     </a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" class="fab fab-form" target="_blank" title="Client Intake Form">
+    <a href="https://speaktolead-onboarding.netlify.app" class="fab fab-form" target="_blank" title="Client Intake Form">
       <i class="fas fa-file-alt"></i>
       <span class="fab-tip">Apply Now</span>
     </a>
@@ -881,16 +895,9 @@
     </a>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── SCROLL REVEAL ──
-    document.addEventListener('DOMContentLoaded', () => {
-      const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-      if (!els.length) return;
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-      }, { threshold: 0.1 });
-      els.forEach(el => obs.observe(el));
-    });
+
 
     // ── SCROLL PROGRESS + BACK TO TOP ──
     window.addEventListener('scroll', () => {
@@ -957,8 +964,4 @@
         document.getElementById("hamburger").classList.remove("open");
       });
     });
-    // Scroll progress + back to top (if elements exist)
-    window.addEventListener('scroll', () => {
-      const st = document.documentElement.scrollTop;
-      const bar = document.getElementById('progressBar');
-      const btn = document.getElementBy
+  

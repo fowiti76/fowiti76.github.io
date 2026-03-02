@@ -21,7 +21,7 @@
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(14,22,40,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.2); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
     .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
     .nav-logo-img { height: 46px; width: 46px; border-radius: 50%; object-fit: cover; border: 1.5px solid rgba(201,168,76,0.5); }
-    .nav-name { font-size: 13px; letter-spacing: 2.5px; color: var(--white); font-weight: 500; text-transform: uppercase; }
+    .nav-name { font-size: 13px; letter-spacing: 0; color: var(--white); font-weight: 500; }
     .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
     .nav-links a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 13px; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--gold); }
@@ -166,26 +166,40 @@
       .email-input,.email-submit{width:100%;}
     }
   
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-left { opacity: 0; transform: translateX(-28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right { opacity: 0; transform: translateX(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal-right.visible { opacity: 1; transform: translateX(0); }
-    .reveal-scale { opacity: 0; transform: scale(0.94); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal-scale.visible { opacity: 1; transform: scale(1); }
-    .delay-1 { transition-delay: 0.1s; }
-    .delay-2 { transition-delay: 0.2s; }
-    .delay-3 { transition-delay: 0.3s; }
-    .delay-4 { transition-delay: 0.4s; }
-    .delay-5 { transition-delay: 0.5s; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    
+    
+    .reveal-left { opacity: 1; transform: none; transition: none; }
+    .reveal-right { opacity: 1; transform: none; transition: none; }
+    .reveal-scale { opacity: 1; transform: none; transition: none; }
+
+      /* NOSCRIPT / JS-FAIL FALLBACK: show all reveal elements */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
+    
+      /* GLOBAL MOBILE PADDING - prevents all blank section issues */
+      section { padding-left: 20px !important; padding-right: 20px !important; }
+      /* Grid fixes */
+      .impact-grid { grid-template-columns: repeat(2,1fr) !important; }
+      .about-creds { grid-template-columns: 1fr !important; }
+      .testimonials-grid { grid-template-columns: 1fr !important; }
+      .services-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+      .books-grid { gap: 12px !important; }
+      .why-grid, .past-grid, .topics-grid, .events-grid, .res-grid, .art-grid { grid-template-columns: 1fr !important; }
+      .featured { grid-template-columns: 1fr !important; }
+      .reel-inner { grid-template-columns: 1fr !important; }
+      .press-grid { grid-template-columns: repeat(2,1fr) !important; }
+      .footer-top { grid-template-columns: 1fr !important; gap: 28px !important; }
+      .contact-grid { grid-template-columns: 1fr !important; }
+    }
   </style>
 </head>
 <body>
+  <div id="progressBar" style="position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--burgundy));z-index:9999;width:0%;transition:width 0.1s;pointer-events:none;"></div>
   <nav>
     <a href="index.html" class="nav-brand">
       <img src="logo.jpg" alt="Speak to Lead" class="nav-logo-img">
-      <span class="nav-name">Speak to <span style="color:var(--gold);">Lead</span></span>
+      <span class="nav-name"><span style="color:#FFFFFF;letter-spacing:3px;font-weight:700;">SPEAK</span>&nbsp;<span style="color:#C9A84C;letter-spacing:1px;font-weight:400;font-size:11px;text-transform:lowercase;">to</span>&nbsp;<span style="color:#FFFFFF;letter-spacing:3px;font-weight:700;">LEAD</span></span>
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -194,7 +208,7 @@
       <li><a href="speaking.html">Speaking</a></li>
       <li><a href="blog.html" class="active">Blog</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank" class="nav-cta">Work With Me</a></li>
+      <li><a href="https://speaktolead-onboarding.netlify.app" target="_blank" class="nav-cta">Work With Me</a></li>
     </ul>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </nav>
@@ -205,7 +219,7 @@
     <a href="speaking.html">Book Me to Speak</a>
     <a href="blog.html" class="active">Blog</a>
     <a href="contact.html">Contact</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank" class="mobile-cta">Work With Me</a>
+    <a href="https://speaktolead-onboarding.netlify.app" target="_blank" class="mobile-cta">Work With Me</a>
   </div>
 
   <!-- HERO -->
@@ -216,7 +230,7 @@
       <h1>Blog &amp;<br><em>Resources.</em></h1>
       <p class="hero-p">Practical insights on public speaking, leadership, communication, and personal brand. Read on Substack or subscribe to get every article straight to your inbox.</p>
       <div style="display:flex;gap:14px;flex-wrap:wrap;">
-        <a href="https://substack.com/@fidelowiti" target="_blank" class="btn-gold"><i class="fas fa-newspaper"></i> Subscribe on Substack</a>
+        <a href="https://open.substack.com/pub/speaktolead?utm_source=share&utm_medium=android&r=4otzz" target="_blank" class="btn-gold"><i class="fas fa-newspaper"></i> Subscribe on Substack</a>
         <a href="#articles" class="btn-navy"><i class="fas fa-book-open"></i> Read Articles</a>
       </div>
     </div>
@@ -228,7 +242,7 @@
       <i class="fas fa-newspaper" style="font-size:18px;color:var(--dark);"></i>
       <span class="banner-text">The Speak to Lead Newsletter is live on Substack <span>— weekly insights on speaking, leadership and communication</span></span>
     </div>
-    <a href="https://substack.com/@fidelowiti" target="_blank" class="banner-btn">Subscribe Free →</a>
+    <a href="https://open.substack.com/pub/speaktolead?utm_source=share&utm_medium=android&r=4otzz" target="_blank" class="banner-btn">Subscribe Free →</a>
   </div>
 
   <!-- FILTER BAR -->
@@ -252,7 +266,7 @@
       <h2 class="section-title">From the Desk of Fidel Owiti.</h2>
 
       <!-- FEATURED -->
-      <a href="https://substack.com/@fidelowiti" target="_blank" class="featured">
+      <a href="https://open.substack.com/pub/speaktolead?utm_source=share&utm_medium=android&r=4otzz" target="_blank" class="featured">
         <div class="featured-img" style="background:var(--navy);"><span>🎤</span></div>
         <div class="featured-body">
           <div class="art-cat">Featured · Public Speaking</div>
@@ -268,7 +282,7 @@
 
       <!-- ARTICLE GRID - Replace href="#" with actual Substack post URLs -->
       <div class="art-grid">
-        <a href="https://substack.com/@fidelowiti" target="_blank" class="art-card">
+        <a href="https://open.substack.com/pub/speaktolead?utm_source=share&utm_medium=android&r=4otzz" target="_blank" class="art-card">
           <div class="art-card-img" style="background:var(--burgundy);">🏆</div>
           <div class="art-card-body">
             <div class="art-cat">Leadership</div>
@@ -278,7 +292,7 @@
             <span class="art-cta">Read More <i class="fas fa-arrow-right"></i></span>
           </div>
         </a>
-        <a href="https://substack.com/@fidelowiti" target="_blank" class="art-card">
+        <a href="https://open.substack.com/pub/speaktolead?utm_source=share&utm_medium=android&r=4otzz" target="_blank" class="art-card">
           <div class="art-card-img" style="background:var(--gold);">✍️</div>
           <div class="art-card-body">
             <div class="art-cat">Speechwriting</div>
@@ -288,7 +302,7 @@
             <span class="art-cta">Read More <i class="fas fa-arrow-right"></i></span>
           </div>
         </a>
-        <a href="https://substack.com/@fidelowiti" target="_blank" class="art-card">
+        <a href="https://open.substack.com/pub/speaktolead?utm_source=share&utm_medium=android&r=4otzz" target="_blank" class="art-card">
           <div class="art-card-img" style="background:var(--navy);">🧒</div>
           <div class="art-card-body">
             <div class="art-cat">Children & Youth</div>
@@ -298,7 +312,7 @@
             <span class="art-cta">Read More <i class="fas fa-arrow-right"></i></span>
           </div>
         </a>
-        <a href="https://substack.com/@fidelowiti" target="_blank" class="art-card">
+        <a href="https://open.substack.com/pub/speaktolead?utm_source=share&utm_medium=android&r=4otzz" target="_blank" class="art-card">
           <div class="art-card-img" style="background:#2C3E50;">🎯</div>
           <div class="art-card-body">
             <div class="art-cat">Debate</div>
@@ -308,7 +322,7 @@
             <span class="art-cta">Read More <i class="fas fa-arrow-right"></i></span>
           </div>
         </a>
-        <a href="https://substack.com/@fidelowiti" target="_blank" class="art-card">
+        <a href="https://open.substack.com/pub/speaktolead?utm_source=share&utm_medium=android&r=4otzz" target="_blank" class="art-card">
           <div class="art-card-img" style="background:var(--burgundy);">📈</div>
           <div class="art-card-body">
             <div class="art-cat">Executive Communication</div>
@@ -318,7 +332,7 @@
             <span class="art-cta">Read More <i class="fas fa-arrow-right"></i></span>
           </div>
         </a>
-        <a href="https://substack.com/@fidelowiti" target="_blank" class="art-card">
+        <a href="https://open.substack.com/pub/speaktolead?utm_source=share&utm_medium=android&r=4otzz" target="_blank" class="art-card">
           <div class="art-card-img" style="background:var(--gold);">📚</div>
           <div class="art-card-body">
             <div class="art-cat">Books & Writing</div>
@@ -331,7 +345,7 @@
       </div>
 
       <div style="text-align:center;">
-        <a href="https://substack.com/@fidelowiti" target="_blank" class="btn-navy"><i class="fas fa-newspaper"></i> Read All Articles on Substack</a>
+        <a href="https://open.substack.com/pub/speaktolead?utm_source=share&utm_medium=android&r=4otzz" target="_blank" class="btn-navy"><i class="fas fa-newspaper"></i> Read All Articles on Substack</a>
         <p style="font-size:12px;color:var(--gray);margin-top:12px;">To link individual articles: replace href="#" above with your Substack post URL</p>
       </div>
     </div>
@@ -351,7 +365,7 @@
       </div>
       <div class="email-form">
         <input class="email-input" type="email" placeholder="Enter your email address">
-        <button class="email-submit" onclick="window.open('https://substack.com/@fidelowiti','_blank')">Subscribe Free</button>
+        <button class="email-submit" onclick="window.open('https://open.substack.com/pub/speaktolead?utm_source=share&utm_medium=android&r=4otzz','_blank')">Subscribe Free</button>
       </div>
       <p class="email-note">You will be taken to Substack to confirm. No spam. Unsubscribe anytime.</p>
     </div>
@@ -367,13 +381,13 @@
           <div class="res-icon">🎯</div>
           <div class="res-title">The 5-Minute Speech Framework</div>
           <p class="res-desc">A simple structure you can use for any speech, presentation, or talk. Used by hundreds of Speak to Lead clients across Kenya.</p>
-          <a href="https://substack.com/@fidelowiti" target="_blank" class="res-link">Download Free →</a>
+          <a href="https://open.substack.com/pub/speaktolead?utm_source=share&utm_medium=android&r=4otzz" target="_blank" class="res-link">Download Free →</a>
         </div>
         <div class="res-card">
           <div class="res-icon">🧠</div>
           <div class="res-title">Confidence Before the Stage Checklist</div>
           <p class="res-desc">The exact pre-speech routine Fidel gives every coaching client before a major presentation or keynote.</p>
-          <a href="https://substack.com/@fidelowiti" target="_blank" class="res-link">Download Free →</a>
+          <a href="https://open.substack.com/pub/speaktolead?utm_source=share&utm_medium=android&r=4otzz" target="_blank" class="res-link">Download Free →</a>
         </div>
         <div class="res-card">
           <div class="res-icon">📖</div>
@@ -385,42 +399,7 @@
     </div>
   </section>
 
-  <script>
-    // Filter buttons (visual only for now)
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
-    });
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-      if (!els.length) return;
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-      }, { threshold: 0.1 });
-      els.forEach(el => obs.observe(el));
-    });
-    window.addEventListener('scroll', () => {
-      const st = document.documentElement.scrollTop;
-      const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const bar = document.getElementById('progressBar');
-      const btn = document.getElementById('backTop');
-      if (bar) bar.style.width = (st / h * 100) + '%';
-      if (btn) btn.style.opacity = st > 400 ? '1' : '0';
-    });
-    function toggleMenu() {
-      document.getElementById("mobileMenu").classList.toggle("open");
-      document.getElementById("hamburger").classList.toggle("open");
-    }
-    document.querySelectorAll(".mobile-menu a").forEach(link => {
-      link.addEventListener("click", () => {
-        document.getElementById("mobileMenu").classList.remove("open");
-        document.getElementById("hamburger").classList.remove("open");
-      });
-    });
-  </script>
+  
   <footer>
     <div class="footer-inner">
       <div class="footer-top">
@@ -449,10 +428,10 @@
         <div>
           <div class="footer-col-title">Contact</div>
           <ul class="footer-links">
-            <li><a href="/cdn-cgi/l/email-protection#8debe2fae4f9e4babbcdeae0ece4e1a3eee2e0"><span class="__cf_email__" data-cfemail="395f564e504d500e0f795e54585055175a5654">[email&#160;protected]</span></a></li>
+            <li><a href="/cdn-cgi/l/email-protection#037073666268776c6f6662673a3a43646e626a6f2d606c6e"><span class="__cf_email__" data-cfemail="532023363238273c3f3632376a6a13343e323a3f7d303c3e">[email&#160;protected]</span></a></li>
             <li><a href="https://wa.me/254113660881" target="_blank">+254 113 660 881</a></li>
             <li><a href="https://calendly.com/fowiti76" target="_blank">Book a Call</a></li>
-            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank">Client Intake Form</a></li>
+            <li><a href="https://speaktolead-onboarding.netlify.app" target="_blank">Client Intake Form</a></li>
           </ul>
         </div>
       </div>
@@ -476,7 +455,7 @@
       <i class="fab fa-whatsapp"></i>
       <span class="fab-tip">WhatsApp</span>
     </a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" class="fab fab-form" target="_blank" title="Client Intake Form">
+    <a href="https://speaktolead-onboarding.netlify.app" class="fab fab-form" target="_blank" title="Client Intake Form">
       <i class="fas fa-file-alt"></i>
       <span class="fab-tip">Apply Now</span>
     </a>
@@ -486,7 +465,23 @@
     </a>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+    // Scroll progress + back to top
+    window.addEventListener('scroll', () => {
+      const st = document.documentElement.scrollTop;
+      const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const bar = document.getElementById('progressBar');
+      const btn = document.getElementById('backTop');
+      if (bar) bar.style.width = (st / h * 100) + '%';
+      if (btn) btn.style.opacity = st > 400 ? '1' : '0';
+    });
     function toggleMenu() {
       document.getElementById("mobileMenu").classList.toggle("open");
       document.getElementById("hamburger").classList.toggle("open");
@@ -497,8 +492,4 @@
         document.getElementById("hamburger").classList.remove("open");
       });
     });
-    // Scroll progress + back to top (if elements exist)
-    window.addEventListener('scroll', () => {
-      const st = document.documentElement.scrollTop;
-      const bar = document.getElementById('progressBar');
-      const btn = document.getElementBy
+  

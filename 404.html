@@ -17,7 +17,7 @@
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(14,22,40,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.2); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
     .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
     .nav-logo-img { height: 46px; width: 46px; border-radius: 50%; object-fit: cover; border: 1.5px solid rgba(201,168,76,0.5); }
-    .nav-name { font-size: 13px; letter-spacing: 2.5px; color: var(--white); font-weight: 500; text-transform: uppercase; }
+    .nav-name { font-size: 13px; letter-spacing: 0; color: var(--white); font-weight: 500; }
     .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
     .nav-links a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 13px; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--gold); }
@@ -64,9 +64,10 @@
     .fab-form { background: var(--burgundy); }
     .fab-calendar { background: var(--navy); border: 1px solid rgba(201,168,76,0.4); }
 
-    .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
-    .reveal.visible{opacity:1;transform:translateY(0);}
-    .delay-1{transition-delay:0.15s;}.delay-2{transition-delay:0.25s;}.delay-3{transition-delay:0.35s;}.delay-4{transition-delay:0.45s;}
+    .reveal{opacity:1;transform:none;transition:none;}
+    
+
+
     .error-section{min-height:100vh;background:var(--navy-dk);display:flex;align-items:center;justify-content:center;padding:120px 24px 80px;position:relative;overflow:hidden;}
     .error-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(128,0,0,0.2),transparent);}
     .error-grid{position:absolute;inset:0;opacity:0.03;background-image:linear-gradient(var(--gold) 1px,transparent 1px),linear-gradient(90deg,var(--gold) 1px,transparent 1px);background-size:60px 60px;}
@@ -97,6 +98,16 @@
       .error-links{flex-direction:column;align-items:center;}
       .error-links a{width:100%;justify-content:center;}
     }
+      /* NOSCRIPT / JS-FAIL FALLBACK: show all reveal elements */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
+    
+      /* GLOBAL MOBILE PADDING */
+      section { padding-left: 20px !important; padding-right: 20px !important; }
+      .error-links { flex-direction: column; align-items: center; }
+      .error-links a { width: 100%; justify-content: center; }
+      .quick-grid { gap: 8px; }
+    }
   </style>
 </head>
 <body>
@@ -104,7 +115,7 @@
   <nav>
     <a href="index.html" class="nav-brand">
       <img src="logo.jpg" alt="Speak to Lead" class="nav-logo-img">
-      <span class="nav-name">Speak to Lead</span>
+      <span class="nav-name"><span style="color:#FFFFFF;letter-spacing:3px;font-weight:700;">SPEAK</span>&nbsp;<span style="color:#C9A84C;letter-spacing:1px;font-weight:400;font-size:11px;text-transform:lowercase;">to</span>&nbsp;<span style="color:#FFFFFF;letter-spacing:3px;font-weight:700;">LEAD</span></span>
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -113,7 +124,7 @@
       <li><a href="speaking.html">Speaking</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank" class="nav-cta">Work With Me</a></li>
+      <li><a href="https://speaktolead-onboarding.netlify.app" target="_blank" class="nav-cta">Work With Me</a></li>
     </ul>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </nav>
@@ -124,7 +135,7 @@
     <a href="speaking.html">Book Me to Speak</a>
     <a href="blog.html">Blog</a>
     <a href="contact.html">Contact</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank" class="mobile-cta">Work With Me</a>
+    <a href="https://speaktolead-onboarding.netlify.app" target="_blank" class="mobile-cta">Work With Me</a>
   </div>
   <section class="error-section">
     <div class="error-grid"></div>
@@ -143,7 +154,7 @@
           <a href="index.html#services" class="quick-link">Services</a>
           <a href="speaking.html" class="quick-link">Book Fidel to Speak</a>
           <a href="blog.html" class="quick-link">Blog</a>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank" class="quick-link">Apply for Coaching</a>
+          <a href="https://speaktolead-onboarding.netlify.app" target="_blank" class="quick-link">Apply for Coaching</a>
         </div>
       </div>
     </div>
@@ -177,10 +188,10 @@
         <div>
           <div class="footer-col-title">Contact</div>
           <ul class="footer-links">
-            <li><a href="mailto:fowiti76@gmail.com">fowiti76@gmail.com</a></li>
+            <li><a href="/cdn-cgi/l/email-protection#82f1f2e7e3e9f6edeee7e3e6bbbbc2e5efe3ebeeace1edef"><span class="__cf_email__" data-cfemail="57242732363c23383b3236336e6e17303a363e3b7934383a">[email&#160;protected]</span></a></li>
             <li><a href="https://wa.me/254113660881" target="_blank">+254 113 660 881</a></li>
             <li><a href="https://calendly.com/fowiti76" target="_blank">Book a Call</a></li>
-            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank">Client Intake Form</a></li>
+            <li><a href="https://speaktolead-onboarding.netlify.app" target="_blank">Client Intake Form</a></li>
           </ul>
         </div>
       </div>
@@ -195,13 +206,14 @@
     </div>
   </footer>
 
+  <button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
   <!-- FLOATING ACTION BUTTONS -->
   <div class="fab-stack">
     <div class="fab-label" id="fabLabel">Need help?</div>
     <a href="https://wa.me/254113660881" class="fab fab-whatsapp" target="_blank" title="Chat on WhatsApp">
       <i class="fab fa-whatsapp"></i>
     </a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" class="fab fab-form" target="_blank" title="Client Intake Form">
+    <a href="https://speaktolead-onboarding.netlify.app" class="fab fab-form" target="_blank" title="Client Intake Form">
       <i class="fas fa-file-alt"></i>
     </a>
     <a href="https://calendly.com/fowiti76" class="fab fab-calendar" target="_blank" title="Book a Free Call">
@@ -209,9 +221,22 @@
     </a>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded',()=>{const els=document.querySelectorAll('.reveal');const obs=new IntersectionObserver((en)=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});els.forEach(el=>obs.observe(el));});
-    window.addEventListener('scroll',()=>{const st=document.documentElement.scrollTop;const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;const bar=document.getElementById('progressBar');if(bar)bar.style.width=(st/h*100)+'%';});
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    document.addEventListener('DOMContentLoaded',()=>{const els=document.querySelectorAll('.reveal');const obs=new IntersectionObserver((en)=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{ threshold: 0, rootMargin: "0px 0px -40px 0px" });els.forEach(el=>obs.observe(el));});
+    window.addEventListener('scroll', () => {
+      const st = document.documentElement.scrollTop;
+      const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const bar = document.getElementById('progressBar');
+      const btn = document.getElementById('backTop');
+      if (bar) bar.style.width = (st / h * 100) + '%';
+      if (btn) btn.style.opacity = st > 400 ? '1' : '0';
+    });
+    window.addEventListener('scroll', () => {
+      const st = document.documentElement.scrollTop;
+      const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const btn = document.getElementById('backTop');
+      if (btn) btn.style.opacity = st > 400 ? '1' : '0';
+    });
     function toggleMenu() {
       document.getElementById("mobileMenu").classList.toggle("open");
       document.getElementById("hamburger").classList.toggle("open");
@@ -222,17 +247,4 @@
         document.getElementById("hamburger").classList.remove("open");
       });
     });
-    // Scroll progress + back to top (if elements exist)
-    window.addEventListener('scroll', () => {
-      const bar = document.getElementById('progressBar');
-      const btn = document.getElementById('backTop');
-      if (bar) {
-        const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        bar.style.width = (document.documentElement.scrollTop / h * 100) + '%';
-      }
-      if (btn) btn.style.opacity = document.documentElement.scrollTop > 400 ? '1' : '0';
-    });
-  </script>
-
-</body>
-</html>
+    // Scroll progress + back to top (if elements 

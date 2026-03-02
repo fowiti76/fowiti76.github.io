@@ -18,7 +18,7 @@
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(14,22,40,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.2); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
     .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
     .nav-logo-img { height: 46px; width: 46px; border-radius: 50%; object-fit: cover; border: 1.5px solid rgba(201,168,76,0.5); }
-    .nav-name { font-size: 13px; letter-spacing: 2.5px; color: var(--white); font-weight: 500; text-transform: uppercase; }
+    .nav-name { font-size: 13px; letter-spacing: 0; color: var(--white); font-weight: 500; }
     .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
     .nav-links a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 13px; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--gold); }
@@ -144,6 +144,12 @@
       .fab-stack { right: 16px; bottom: 16px; gap: 8px; }
       .fab { width: 48px; height: 48px; font-size: 20px; }
       .fab-tip { display: none; }
+      .why-grid { grid-template-columns: 1fr !important; }
+      .past-grid { grid-template-columns: 1fr !important; }
+      .topics-grid { grid-template-columns: 1fr !important; }
+      .events-grid { grid-template-columns: 1fr !important; }
+      .why-section, .past-section, .topics-section, .events-section { padding-left: 20px !important; padding-right: 20px !important; }
+      .why-card, .past-card, .topic-card, .event-card { padding: 24px 20px !important; }
       .hero-inner{grid-template-columns:1fr;}
       .speaker-card{display:none;}
       .hero,.topics-section,.events-section,.why-section,.past-section,.cta-section{padding-left:20px;padding-right:20px;}
@@ -154,26 +160,40 @@
       .btn-outline{margin-left:0;}
     }
   
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-left { opacity: 0; transform: translateX(-28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right { opacity: 0; transform: translateX(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal-right.visible { opacity: 1; transform: translateX(0); }
-    .reveal-scale { opacity: 0; transform: scale(0.94); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal-scale.visible { opacity: 1; transform: scale(1); }
-    .delay-1 { transition-delay: 0.1s; }
-    .delay-2 { transition-delay: 0.2s; }
-    .delay-3 { transition-delay: 0.3s; }
-    .delay-4 { transition-delay: 0.4s; }
-    .delay-5 { transition-delay: 0.5s; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    
+    
+    .reveal-left { opacity: 1; transform: none; transition: none; }
+    .reveal-right { opacity: 1; transform: none; transition: none; }
+    .reveal-scale { opacity: 1; transform: none; transition: none; }
+
+      /* NOSCRIPT / JS-FAIL FALLBACK: show all reveal elements */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
+    
+      /* GLOBAL MOBILE PADDING - prevents all blank section issues */
+      section { padding-left: 20px !important; padding-right: 20px !important; }
+      /* Grid fixes */
+      .impact-grid { grid-template-columns: repeat(2,1fr) !important; }
+      .about-creds { grid-template-columns: 1fr !important; }
+      .testimonials-grid { grid-template-columns: 1fr !important; }
+      .services-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+      .books-grid { gap: 12px !important; }
+      .why-grid, .past-grid, .topics-grid, .events-grid, .res-grid, .art-grid { grid-template-columns: 1fr !important; }
+      .featured { grid-template-columns: 1fr !important; }
+      .reel-inner { grid-template-columns: 1fr !important; }
+      .press-grid { grid-template-columns: repeat(2,1fr) !important; }
+      .footer-top { grid-template-columns: 1fr !important; gap: 28px !important; }
+      .contact-grid { grid-template-columns: 1fr !important; }
+    }
   </style>
 </head>
 <body>
+  <div id="progressBar" style="position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--burgundy));z-index:9999;width:0%;transition:width 0.1s;pointer-events:none;"></div>
   <nav>
     <a href="index.html" class="nav-brand">
       <img src="logo.jpg" alt="Speak to Lead" class="nav-logo-img">
-      <span class="nav-name">Speak to <span style="color:var(--gold);">Lead</span></span>
+      <span class="nav-name"><span style="color:#FFFFFF;letter-spacing:3px;font-weight:700;">SPEAK</span>&nbsp;<span style="color:#C9A84C;letter-spacing:1px;font-weight:400;font-size:11px;text-transform:lowercase;">to</span>&nbsp;<span style="color:#FFFFFF;letter-spacing:3px;font-weight:700;">LEAD</span></span>
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -182,7 +202,7 @@
       <li><a href="speaking.html" class="active">Speaking</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank" class="nav-cta">Work With Me</a></li>
+      <li><a href="https://speaktolead-onboarding.netlify.app" target="_blank" class="nav-cta">Work With Me</a></li>
     </ul>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </nav>
@@ -193,7 +213,7 @@
     <a href="speaking.html" class="active">Book Me to Speak</a>
     <a href="blog.html">Blog</a>
     <a href="contact.html">Contact</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank" class="mobile-cta">Work With Me</a>
+    <a href="https://speaktolead-onboarding.netlify.app" target="_blank" class="mobile-cta">Work With Me</a>
   </div>
   <!-- HERO -->
   <section class="hero">
@@ -204,7 +224,7 @@
         <h1>Book Fidel<br>to <em>Speak</em> at<br>Your Event.</h1>
         <p>A speaker who does not just deliver a talk — he shifts the energy in the room. Whether it is a keynote, corporate training, or MC role, Fidel brings clarity, passion, and impact to every stage.</p>
         <div class="hero-btns">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank" class="btn-gold"><i class="fas fa-calendar"></i> Book Fidel Now</a>
+          <a href="https://speaktolead-onboarding.netlify.app" target="_blank" class="btn-gold"><i class="fas fa-calendar"></i> Book Fidel Now</a>
           <a href="https://wa.me/254113660881" target="_blank" class="btn-outline"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
         </div>
       </div>
@@ -276,11 +296,11 @@
       <div class="section-label">Why Book Fidel</div>
       <h2 class="section-title">What Makes Fidel Different.</h2>
       <div class="why-grid">
-        <div class="why-card reveal delay-1"><div class="why-num">01</div><div class="why-title">He Lives What He Teaches</div><div class="why-desc">Fidel has been on stage since age 14 and has coached hundreds of communicators across East Africa. He does not talk from a textbook.</div></div>
-        <div class="why-card reveal delay-2"><div class="why-num">02</div><div class="why-title">He Customizes Every Talk</div><div class="why-desc">No copy-paste keynotes. Fidel researches your audience, industry, and goals before stepping on stage — so the talk feels made for your room.</div></div>
-        <div class="why-card reveal delay-3"><div class="why-num">03</div><div class="why-title">He Moves People to Action</div><div class="why-desc">The goal is never applause. It is action. Fidel's talks are designed to create real change in mindset, behaviour, and confidence.</div></div>
-        <div class="why-card reveal delay-4"><div class="why-num">04</div><div class="why-title">He is Reliable & Professional</div><div class="why-desc">On time. Prepared. Responsive. Event organizers trust Fidel because he makes their job easier — no drama, no surprises, just great delivery.</div></div>
-        <div class="why-card reveal delay-5"><div class="why-num">05</div><div class="why-title">He Speaks Two Languages</div><div class="why-desc">Fully bilingual in English and Swahili. Fidel connects with any audience across Kenya and East Africa in the language that resonates most.</div></div>
+        <div class="why-card reveal"><div class="why-num">01</div><div class="why-title">He Lives What He Teaches</div><div class="why-desc">Fidel has been on stage since age 14 and has coached hundreds of communicators across East Africa. He does not talk from a textbook.</div></div>
+        <div class="why-card reveal"><div class="why-num">02</div><div class="why-title">He Customizes Every Talk</div><div class="why-desc">No copy-paste keynotes. Fidel researches your audience, industry, and goals before stepping on stage — so the talk feels made for your room.</div></div>
+        <div class="why-card reveal"><div class="why-num">03</div><div class="why-title">He Moves People to Action</div><div class="why-desc">The goal is never applause. It is action. Fidel's talks are designed to create real change in mindset, behaviour, and confidence.</div></div>
+        <div class="why-card reveal"><div class="why-num">04</div><div class="why-title">He is Reliable & Professional</div><div class="why-desc">On time. Prepared. Responsive. Event organizers trust Fidel because he makes their job easier — no drama, no surprises, just great delivery.</div></div>
+        <div class="why-card reveal"><div class="why-num">05</div><div class="why-title">He Speaks Two Languages</div><div class="why-desc">Fully bilingual in English and Swahili. Fidel connects with any audience across Kenya and East Africa in the language that resonates most.</div></div>
         <div class="why-card reveal"><div class="why-num">06</div><div class="why-title">He Has Proven Results</div><div class="why-desc">500+ professionals trained. 26 books written. Trusted by Toastmasters, Rotary, BNI, schools, and corporates across Kenya.</div></div>
       </div>
     </div>
@@ -311,7 +331,7 @@
       <h2 class="cta-title">Let's Make Your Event Unforgettable.</h2>
       <p class="cta-sub">Fill in the booking form and Fidel's team will get back to you within 24 hours with availability, topics, and next steps.</p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank" class="btn-gold"><i class="fas fa-calendar-check"></i> Submit Booking Enquiry</a>
+        <a href="https://speaktolead-onboarding.netlify.app" target="_blank" class="btn-gold"><i class="fas fa-calendar-check"></i> Submit Booking Enquiry</a>
         <a href="https://wa.me/254113660881" target="_blank" class="btn-outline"><i class="fab fa-whatsapp"></i> WhatsApp Us Directly</a>
       </div>
     </div>
@@ -344,10 +364,10 @@
         <div>
           <div class="footer-col-title">Contact</div>
           <ul class="footer-links">
-            <li><a href="/cdn-cgi/l/email-protection#60060f17091409575620070d01090c4e030f0d"><span class="__cf_email__" data-cfemail="caaca5bda3bea3fdfc8aada7aba3a6e4a9a5a7">[email&#160;protected]</span></a></li>
+            <li><a href="/cdn-cgi/l/email-protection#d7a4a7b2b6bca3b8bbb2b6b3eeee97b0bab6bebbf9b4b8ba"><span class="__cf_email__" data-cfemail="11626174707a657e7d747075282851767c70787d3f727e7c">[email&#160;protected]</span></a></li>
             <li><a href="https://wa.me/254113660881" target="_blank">+254 113 660 881</a></li>
             <li><a href="https://calendly.com/fowiti76" target="_blank">Book a Call</a></li>
-            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" target="_blank">Client Intake Form</a></li>
+            <li><a href="https://speaktolead-onboarding.netlify.app" target="_blank">Client Intake Form</a></li>
           </ul>
         </div>
       </div>
@@ -371,7 +391,7 @@
       <i class="fab fa-whatsapp"></i>
       <span class="fab-tip">WhatsApp</span>
     </a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScPmAqGqvaS5qLC3OvZb8U3mZT8ZgfHeR2HrB-0TUb6FYVgHQ/viewform" class="fab fab-form" target="_blank" title="Client Intake Form">
+    <a href="https://speaktolead-onboarding.netlify.app" class="fab fab-form" target="_blank" title="Client Intake Form">
       <i class="fas fa-file-alt"></i>
       <span class="fab-tip">Apply Now</span>
     </a>
@@ -381,16 +401,9 @@
     </a>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-      if (!els.length) return;
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-      }, { threshold: 0.1 });
-      els.forEach(el => obs.observe(el));
-    });
+
     window.addEventListener('scroll', () => {
       const st = document.documentElement.scrollTop;
       const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -409,8 +422,4 @@
         document.getElementById("hamburger").classList.remove("open");
       });
     });
-    // Scroll progress + back to top (if elements exist)
-    window.addEventListener('scroll', () => {
-      const st = document.documentElement.scrollTop;
-      const bar = document.getElementById('progressBar');
-      const btn = document.getElementBy
+  
