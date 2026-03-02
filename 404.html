@@ -91,7 +91,7 @@
       footer { padding: 36px 20px 24px; }
       .footer-top { grid-template-columns: 1fr; gap: 28px; margin-bottom: 28px; }
       .footer-bottom { flex-direction: column; align-items: center; gap: 10px; text-align: center; }
-      #backTop { left: 16px; bottom: 16px; width: 40px; height: 40px; font-size: 16px; }
+      #backTop { position: fixed; bottom: 88px; left: 20px; z-index: 300; width: 44px; height: 44px; background: var(--navy); color: var(--white); border: 2px solid var(--gold); border-radius: 50%; font-size: 20px; cursor: pointer; opacity: 0; transition: opacity 0.3s, transform 0.2s; display: flex; align-items: center; justify-content: center; font-family: inherit; line-height: 1; }
       .fab-stack { right: 16px; bottom: 16px; gap: 8px; }
       .fab { width: 48px; height: 48px; font-size: 20px; }
       .fab-tip { display: none; }
@@ -128,6 +128,14 @@
     </ul>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </nav>
+<script>
+    function toggleMenu() {
+      var m = document.getElementById('mobileMenu');
+      var h = document.getElementById('hamburger');
+      if (m) m.classList.toggle('open');
+      if (h) h.classList.toggle('open');
+    }
+  </script>
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.html">🏠 Home</a>
     <a href="index.html#services">Services</a>
@@ -188,7 +196,7 @@
         <div>
           <div class="footer-col-title">Contact</div>
           <ul class="footer-links">
-            <li><a href="/cdn-cgi/l/email-protection#82f1f2e7e3e9f6edeee7e3e6bbbbc2e5efe3ebeeace1edef"><span class="__cf_email__" data-cfemail="57242732363c23383b3236336e6e17303a363e3b7934383a">[email&#160;protected]</span></a></li>
+            <li><a href="#" class="reveal-email-link"><span class="reveal-email">speaktolead99@gmail.com</span></a></li>
             <li><a href="https://wa.me/254113660881" target="_blank">+254 113 660 881</a></li>
             <li><a href="https://calendly.com/fowiti76" target="_blank">Book a Call</a></li>
             <li><a href="https://speaktolead-onboarding.netlify.app" target="_blank">Client Intake Form</a></li>
@@ -196,7 +204,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-copy">© 2026 Speak to Lead · Fidel Owiti · Nairobi, Kenya</span>
+        <span class="footer-copy">© 2026 Speak to Lead · Nairobi, Kenya</span>
         <div class="footer-palette">
           <div class="palette-dot" style="background:#1B2F5E;"></div>
           <div class="palette-dot" style="background:#C9A84C;"></div>
@@ -221,7 +229,7 @@
     </a>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     document.addEventListener('DOMContentLoaded',()=>{const els=document.querySelectorAll('.reveal');const obs=new IntersectionObserver((en)=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{ threshold: 0, rootMargin: "0px 0px -40px 0px" });els.forEach(el=>obs.observe(el));});
     window.addEventListener('scroll', () => {
       const st = document.documentElement.scrollTop;
